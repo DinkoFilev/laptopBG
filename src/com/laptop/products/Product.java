@@ -9,6 +9,7 @@ public abstract class Product {
 	// private String EANCode;
 
 	// TODO action methods
+	// TODO action methods
 
 	void insertProduct(Product product) {
 
