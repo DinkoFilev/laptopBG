@@ -10,12 +10,36 @@ public abstract class Product {
 
 	// TODO action methods
 
-	void insertProduct(Product product) {
+	public void insertProduct(Product product, int quantity) {
 
 	}
 
-	void removeProduct(Product product) {
+	public void removeProduct(Product product, int quanrity) {
 
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public Double getProductPrice() {
+		return productPrice;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
 	}
 
 }
