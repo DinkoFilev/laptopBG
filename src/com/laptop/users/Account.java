@@ -1,28 +1,51 @@
 package com.laptop.users;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.laptop.DB_ACCESS.DBManager;
+
 public abstract class Account {
-	static int accountID = 0;
+	private static int accountID = 0;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String userName;
-	private String passWord;
-	private boolean isAdmin;
+	private String username;
+	private String password;
+	private boolean isAdmin = false;
 
 	// TODO validations
-	public Account(String firstName, String lastName, String email, String userName, String passWord) {
+	public Account(String firstName, String lastName, String email, String username, String password,boolean isAdmin) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.userName = userName;
-		this.passWord = passWord;
-		if (accountID == 0) {
+		this.username = username;
+		this.password = password;
+		
+			DBManager.getInstance();
+			Statement st;
+			try {
+				st = DBManager.getConnection().createStatement();
+				ResultSet resultSet = st
+						.executeQuery("SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'laptopbg' AND   TABLE_NAME   = 'accounts';");
+			while(resultSet.next()){
+				accountID = resultSet.getInt("AUTO_INCREMENT");
+			}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+	
+		if (accountID == 1) {
 			this.isAdmin = true;
 		}
-		accountID++;
+		
 	}
 
-	String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
@@ -30,7 +53,7 @@ public abstract class Account {
 		this.firstName = firstName;
 	}
 
-	String getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
@@ -38,7 +61,7 @@ public abstract class Account {
 		this.lastName = lastName;
 	}
 
-	String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
@@ -46,20 +69,31 @@ public abstract class Account {
 		this.email = email;
 	}
 
-	String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	void setUserName(String userName) {
-		this.userName = userName;
+	void setUsername(String username) {
+		this.username = username;
 	}
 
-	String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	void setPassWord(String passWord) {
-		this.passWord = passWord;
+	void setPassword(String password) {
+		this.password = password;
 	}
 
+	void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public static int getAccountID() {
+		return accountID;
+	}
 }

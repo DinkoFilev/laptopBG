@@ -16,7 +16,7 @@
 <div class="shell">
   <!-- Header -->
   <div id="header">
-    <h1 id="logo"><a href="#">shoparound</a></h1>
+    <h1 id="logo"><a href="#">Notebook World</a></h1>
     <!-- Cart -->
     <div id="cart"> <a href="#" class="cart-link">Your Shopping Cart</a>
       <div class="cl">&nbsp;</div>
