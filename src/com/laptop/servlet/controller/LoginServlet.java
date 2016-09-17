@@ -24,14 +24,12 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String loggedHTML;
-		if (AccountManager.getInstance().loginValidation(username, password)) {
-			loggedHTML = "/LaptopBG/pages/Index.jsp";
+		if (!AccountManager.getInstance().loginValidation(username, password)) {
+			response.getWriter().append("ERROR");
 
-		} else {
-			loggedHTML = "/LaptopBG/pages/FAIL.jsp";
-		}
+		} 
 
-		response.sendRedirect(loggedHTML);
+		//response.sendRedirect(loggedHTML);
 		
 
 	}

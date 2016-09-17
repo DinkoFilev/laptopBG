@@ -25,49 +25,76 @@ public class AccountDAO {
 		return instance;
 	}
 
-	public void insertAccount(Account account) {
+	public boolean insertAccount(Account account) {
+		PreparedStatement ps = null;
 		try {
 			DBManager.getInstance();
-			PreparedStatement st = DBManager.getConnection().prepareStatement(
-					"INSERT INTO accounts (first_name, last_name, email,username, password,is_admin,test_id) VALUES (?, ?, ?, ?, ?,?,?);");
-			st.setString(1, account.getFirstName());
-			st.setString(2, account.getLastName());
-			st.setString(3, account.getEmail());
-			st.setString(4, account.getUsername());
-			st.setString(5, account.getPassword());
-			st.setBoolean(6, account.isAdmin());
-			st.setInt(7, Account.getAccountID());
-			st.executeUpdate();
+			ps = DBManager.getConnection().prepareStatement(
+					"INSERT INTO accounts (first_name, last_name, email,username, password,address,is_admin) VALUES (?,?,?,?,?,?,?);");
+			ps.setString(1, account.getFirstName());
+			ps.setString(2, account.getLastName());
+			ps.setString(3, account.getEmail());
+			ps.setString(4, account.getUsername());
+			ps.setString(5, account.getPassword());
+			ps.setString(6, account.getAddress());
+			ps.setBoolean(7, account.isAdmin());
+			ps.executeUpdate();
+
 			System.out.println("User added successfully");
+			return true;
 		} catch (SQLException e) {
 			System.out.println("error cannot add this user");
 			e.printStackTrace();
+			return false;
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
 	public HashSet<Account> getAllUsers() {
 		HashSet<Account> users = new HashSet<Account>();
-
+		Statement st = null;
+		ResultSet resultSet = null;
 		try {
 			DBManager.getInstance();
-			Statement st = DBManager.getConnection().createStatement();
+			st = DBManager.getConnection().createStatement();
 
-			ResultSet resultSet = st
-					.executeQuery("SELECT first_name, last_name, email,username, password,is_admin FROM accounts;");
+			resultSet = st.executeQuery(
+					"SELECT first_name, last_name, email,username, password,address ,is_admin FROM accounts;");
 			while (resultSet.next()) {
 				if (resultSet.getBoolean("is_admin")) {
 					users.add(new Customer(resultSet.getString("first_name"), resultSet.getString("last_name"),
 							resultSet.getString("email"), resultSet.getString("username"),
-							resultSet.getString("password")));
+							resultSet.getString("password"), resultSet.getString("address")));
 
 				}
 				users.add(new Customer(resultSet.getString("first_name"), resultSet.getString("last_name"),
-						resultSet.getString("email"), resultSet.getString("username"),
-						resultSet.getString("password")));
+						resultSet.getString("email"), resultSet.getString("username"), resultSet.getString("password"),
+						resultSet.getString("address")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Cannot create statement");
 			return users;
+		} finally {
+			try {
+				if(st != null){
+				st.close();
+				}
+				if(resultSet != null){
+				resultSet.close();
+				}
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}
+
 		}
 		System.out.println("Users loaded successfully");
 		return users;

@@ -89,6 +89,12 @@ a.bul { background:url(images/bul.gif) no-repeat 0 center; padding-left:10px;}
 #slider-nav a:hover,
 #slider-nav a.active { background:#fff;}
 
+#login-box { height:350px; position:relative; overflow:hidden; }
+#login-holder { width:720px; height:400px; position:relative; overflow:hidden; }
+#login-holder .jcarousel-clip{ width:720px; height:252px; position:relative; overflow:hidden; }
+#login-holder ul{ width:720px; height:252px; position:relative; overflow:hidden; list-style-type: none;}
+#login-holder ul li{ width:720px; height:252px; position:relative; overflow:hidden; float:left; }
+
 .products {}
 .products ul{ list-style-type: none;}
 .products ul li{ position:relative; padding:1px; border:solid 1px #dedede; float:left; width:231px; margin-right:9px; height:383px; overflow:hidden; }

@@ -4,8 +4,8 @@ import com.laptop.products.Product;
 
 public class Administrator extends Account {
 
-	public Administrator(String firstName, String lastName, String email, String userName, String password) {
-		super(firstName, lastName, email, userName, password , true);
+	public Administrator(String firstName, String lastName, String email, String username, String password,String address) {
+		super(firstName, lastName, email, username, password ,address, true);
 		
 
 	}

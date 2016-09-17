@@ -13,36 +13,50 @@ public abstract class Account {
 	private String email;
 	private String username;
 	private String password;
+	private String address;
 	private boolean isAdmin = false;
 
 	// TODO validations
-	public Account(String firstName, String lastName, String email, String username, String password,boolean isAdmin) {
+	public Account(String firstName, String lastName, String email, String username, String password, String address,
+			boolean isAdmin) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		
-			DBManager.getInstance();
-			Statement st;
-			try {
-				st = DBManager.getConnection().createStatement();
-				ResultSet resultSet = st
-						.executeQuery("SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'laptopbg' AND   TABLE_NAME   = 'accounts';");
-			while(resultSet.next()){
+		this.address = address;
+
+		DBManager.getInstance();
+		Statement st = null;
+		ResultSet resultSet = null;
+		try {
+			st = DBManager.getConnection().createStatement();
+			resultSet = st.executeQuery(
+					"SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'laptop' AND   TABLE_NAME   = 'accounts';");
+			while (resultSet.next()) {
 				accountID = resultSet.getInt("AUTO_INCREMENT");
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (st != null) {
+					st.close();
+				}
+				if (resultSet != null) {
+					resultSet.close();
+				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
+		}
 
-			
-	
 		if (accountID == 1) {
 			this.isAdmin = true;
 		}
-		
+
 	}
 
 	public String getFirstName() {
@@ -95,5 +109,13 @@ public abstract class Account {
 
 	public static int getAccountID() {
 		return accountID;
+	}
+
+	void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddress() {
+		return address;
 	}
 }

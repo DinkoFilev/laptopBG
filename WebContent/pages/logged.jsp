@@ -1,3 +1,10 @@
+<%@page session="true"%>
+<%
+if(session.getAttribute("user")==null)
+{
+   response.sendRedirect("AccountLogin.jsp");
+}
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -6,6 +13,7 @@
 <title>Shop Around</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="css/loginStyle.css" rel="stylesheet" type="text/css" />
 <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
@@ -27,15 +35,24 @@
       <ul>
         <li><a href="#" class="active">Home</a></li>
         <li><a href="#">Support</a></li>
-        <li><a href="AccountLogin.jsp">My Account</a></li>
+        <li><a href="#">My Account</a></li>
         <li><a href="#">The Store</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
+    
+      
+      
+         
+  
     </div>
+    
+     
+	  
     <!-- End Navigation -->
   </div>
   <!-- End Header -->
   <!-- Main -->
+  <button class="send_button" type="submit" onclick="window.location.href='/LaptopBG/pages/logout.jsp'" style="float: right;">LOGOUT</button> 
   <div id="main">
     <div class="cl">&nbsp;</div>
     <!-- Content -->

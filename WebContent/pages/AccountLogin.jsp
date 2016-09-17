@@ -25,9 +25,9 @@
     <!-- Navigation -->
     <div id="navigation">
       <ul>
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#">Support</a></li>
-        <li><a href="AccountLogin.jsp">My Account</a></li>
+        <li><a href="#" class="active">My Account</a></li>
         <li><a href="#">The Store</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -41,16 +41,12 @@
     <!-- Content -->
     <div id="content">
       <!-- Content Slider -->
-      <div id="slider" class="box">
-        <div id="slider-holder">
-          <ul>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-          </ul>
+      <div id="login-box" class="box">
+        <div id="login-holder">
+        <jsp:include page="Login.jsp" flush="true" />
+          
         </div>
-        <div id="slider-nav"> <a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> </div>
+      
       </div>
       <!-- End Content Slider -->
       <!-- Products -->

@@ -2,6 +2,9 @@ package com.laptop.users;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.laptop.DB_ACCESS.AccountDAO;
@@ -30,16 +33,22 @@ public class AccountManager {
 
 	}
 
-	public void registerUser(String firstName, String lastName, String email, String username, String password) {
+	public void registerUser(String firstName, String lastName, String email, String username, String password,
+			String address) {
 		Account account = null;
 		if (Account.getAccountID() == 0) {
-			account = new Administrator(firstName, lastName, email, username, MD5Convert(password).toString());
-		} else {
-			account = new Customer(firstName, lastName, email, username, MD5Convert(password).toString());
-		}
+			account = new Administrator(firstName, lastName, email, username, MD5Convert(password).toString(), address);
 
+		} else {
+			account = new Customer(firstName, lastName, email, username, MD5Convert(password).toString(), address);
+
+		}
+		// any issue with database will remove last user from cache
 		registerredUsers.put(username, account);
-		AccountDAO.getInstance().insertAccount(account);
+		if (!AccountDAO.getInstance().insertAccount(account)) {
+			registerredUsers.remove(username);
+
+		}
 
 	}
 
@@ -47,7 +56,7 @@ public class AccountManager {
 		if (!registerredUsers.containsKey(username)) {
 			return false;
 		}
-		
+
 		return registerredUsers.get(username).getPassword().toString().equals(MD5Convert(password).toString());
 
 	}
@@ -70,5 +79,20 @@ public class AccountManager {
 		return sb;
 
 	}
-	
+
+	public String registerChecker(String username, String email) {
+		if (registerredUsers.containsKey(username)) {
+			return "username";
+		}
+
+		for (Entry<String, Account> user : registerredUsers.entrySet()) {
+			if (user.getValue().getEmail().equals(email)) {
+				return "email";
+			}
+
+		}
+
+		return "register";
+	}
+
 }
