@@ -67,7 +67,7 @@
             Login
       </div>
       <div id="form_val">
-        <div class="label">User Id :</div>
+        <div class="label">Username :</div>
         <div class="control"><input type="text" name="login_id" id="login_id"/><span style="font-size: 10px;"></span></div>
         
         <div class="label">Password:</div>

@@ -6,8 +6,11 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 import com.laptop.DB_ACCESS.AccountDAO;
+
+
 
 public class AccountManager {
 
@@ -34,13 +37,13 @@ public class AccountManager {
 	}
 
 	public void registerUser(String firstName, String lastName, String email, String username, String password,
-			String address) {
+			String address,String phoneNumber) {
 		Account account = null;
 		if (Account.getAccountID() == 0) {
 			account = new Administrator(firstName, lastName, email, username, MD5Convert(password).toString(), address);
 
 		} else {
-			account = new Customer(firstName, lastName, email, username, MD5Convert(password).toString(), address);
+			account = new Customer(firstName, lastName, email, username, MD5Convert(password).toString(), address,phoneNumber);
 
 		}
 		// any issue with database will remove last user from cache
@@ -80,7 +83,28 @@ public class AccountManager {
 
 	}
 
-	public String registerChecker(String username, String email) {
+	public String registerChecker(String firstName , String lastName , String email , String username , String password , String address , String phoneNumber) {
+		if(!firstName.matches("^[a-zA-Z]{3,20}$")){
+			System.out.println("NE MATCHVA firstName");
+			return "firstName";
+		}
+		if(!lastName.matches("^[a-zA-Z]{3,20}$")){
+			System.out.println("NE MATCHVA LastName");
+		
+			return "lastName";
+		}
+		if(!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")){
+			System.out.println("NE MATCHVA emaila");
+			return "email";
+		}
+		if(!username.matches("^[a-zA-Z0-9._-]{3,10}$")){
+			System.out.println("NE MATCHVA username");
+			return "username";
+		}
+		if(!password.matches("^[a-zA-Z0-9._-]{3,15}$")){
+			System.out.println("NE MATCHVA parolata");
+			return "password";
+		}
 		if (registerredUsers.containsKey(username)) {
 			return "username";
 		}

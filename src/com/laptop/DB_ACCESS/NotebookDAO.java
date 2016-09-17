@@ -22,7 +22,7 @@ public class NotebookDAO {
 		return instance;
 	}
 
-	public void insertNotebook(Notebook notebook) {
+	public boolean insertNotebook(Notebook notebook) {
 		DBManager.getInstance();
 		Statement st = null;
 		PreparedStatement pst = null;
@@ -35,7 +35,7 @@ public class NotebookDAO {
 		}
 
 		try {
-			resultSet = st.executeQuery("SELECT product_id FROM products where type=" + notebook.getType());
+			resultSet = st.executeQuery("SELECT product_id FROM products where product_type=" + notebook.getType());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,10 +61,14 @@ public class NotebookDAO {
 			pst.setString(15, notebook.getImage());
 			pst.setInt(16, resultSet.getInt("product_id"));
 			pst.executeUpdate();
+			System.out.println("Noteboook added successfully");
+			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("error cannot add this notebook");
 			e.printStackTrace();
+			return false;
 		}
+		
 
 	}
 

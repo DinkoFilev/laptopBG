@@ -14,10 +14,11 @@ public abstract class Account {
 	private String username;
 	private String password;
 	private String address;
+	private String phoneNumber;
 	private boolean isAdmin = false;
 
 	// TODO validations
-	public Account(String firstName, String lastName, String email, String username, String password, String address,
+	public Account(String firstName, String lastName, String email, String username, String password, String address,String phoneNumber,
 			boolean isAdmin) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -25,6 +26,7 @@ public abstract class Account {
 		this.username = username;
 		this.password = password;
 		this.address = address;
+		this.phoneNumber = phoneNumber;
 
 		DBManager.getInstance();
 		Statement st = null;
@@ -117,5 +119,10 @@ public abstract class Account {
 
 	public String getAddress() {
 		return address;
+	}
+
+	public String getPhoneNumber() {
+		// TODO Auto-generated method stub
+		return phoneNumber;
 	}
 }

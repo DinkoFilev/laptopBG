@@ -18,7 +18,7 @@ public class Shop {
 	public void addProduct(Product product) {
 		if (existsProduct(product) > -1) {
 			int index = products.indexOf(product);
-			products.get(index).setQuantity(products.get(index).getQuantity() + 1);
+		//	products.get(index).setQuantity(products.get(index).getQuantity() + 1);
 		} else {
 			products.add(product);
 		}
@@ -32,9 +32,9 @@ public class Shop {
 
 	private int existsProduct(Product product) {
 		for (int i = 0; i < products.size(); i++) {
-			if (products.get(i) != null && products.get(i).getProductName().equals(product.getProductName())) {
-				return i;
-			}
+		//	if (products.get(i) != null && products.get(i).getProductName().equals(product.getProductName())) {
+		//		return i;
+		//	}
 		}
 		return -1;
 	}

@@ -16,15 +16,25 @@
 			this.timer = setTimeout(function () {
 				$.ajax({
 		          	url: '/LaptopBG/RegisterServlet',
-	          	data: 'firstname='+ $('#firstname').val() +'&lastname='+ $('#lastname').val() +'&email='+ $('#email').val() +'&username='+ $('#username').val() +'&password='+ $('#password').val() +'&address=' + $('#address').val(),
+	          	data: 'firstname='+ $('#firstname').val() +'&lastname='+ $('#lastname').val() +'&email='+ $('#email').val() +'&username='+ $('#username').val() +'&password='+ $('#password').val() +'&address=' + $('#address').val()+'&phoneNumber=' + $('#phoneNumber').val(),
 		          	type: 'post',
 		   			success: function(msg){
-						if(msg == 'username') // Message Sent, check and redirect
+						if(msg == 'firstName') // Message Sent, check and redirect
 						{				// and direct to the success page
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('Username already exists').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('First Name should contains letters 3 to 20 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
+					                });
+							
+	
+						}
+						else if(msg == 'lastName') // Message Sent, check and redirect
+						{				// and direct to the success page
+							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+				                	{
+					                  //add message and change the class of the box and start fading
+					                  $(this).html('Last Name should contains letters from 3 to 20 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	
@@ -34,7 +44,27 @@
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('E-mail adress already exists').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('Invalid email').removeClass().addClass('myerror').fadeTo(900,1);
+					                });
+							
+	
+						}
+						else if(msg == 'username') // Message Sent, check and redirect
+						{				// and direct to the success page
+							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+				                	{
+					                  //add message and change the class of the box and start fading
+					                  $(this).html('Username can contains digits, letters, dash, dot, underscore from 3 to 10 symbols').removeClass().addClass('myerror').fadeTo(900,1);
+					                });
+							
+	
+						}
+						else if(msg == 'password') // Message Sent, check and redirect
+						{				// and direct to the success page
+							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+				                	{
+					                  //add message and change the class of the box and start fading
+					                  $(this).html('Password can contains digits, letters, dash, dot, underscore from 3 to 15 symbols').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	
@@ -101,6 +131,10 @@
          <div class="label">Address :</div>   
          <div class="control"><input type="text" name="address"  id="address"
 					placeholder="Address" required="" ><span style="font-size: 10px;"></span></div>
+					<div class="label">Phone number :</div>   
+         <div class="control"><input type="text" name="phoneNumber"  id="phoneNumber"
+					placeholder="Phone Number" required="" ><span style="font-size: 10px;"></span></div>
+					
          
          <b>Would you
 					like to receive e-mail notifications on our special sales?</b> <br>

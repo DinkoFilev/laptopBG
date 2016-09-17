@@ -6,8 +6,8 @@ import com.laptop.shop.Shop;
 public class Customer extends Account {
 	
 	Shop shop;
-	public Customer(String firstName, String lastName, String email, String username, String password,String address) {
-		super(firstName, lastName, email, username, password,address,false);
+	public Customer(String firstName, String lastName, String email, String username, String password,String address,String phoneNumber) {
+		super(firstName, lastName, email, username, password,address,phoneNumber,false);
 
 	}
 

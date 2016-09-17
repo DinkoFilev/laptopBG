@@ -27,13 +27,14 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String address = request.getParameter("address");
-		String duplicate = AccountManager.getInstance().registerChecker(username, email);
+		String phoneNumber = request.getParameter("phoneNumber");
+		String duplicate = AccountManager.getInstance().registerChecker(firstName,lastName,email,username, password,address,phoneNumber);
 		
 			response.getWriter().append(duplicate);
 		
 		//String loggedHTML = "/LaptopBG/pages/Login.jsp";
 		if(duplicate.equals("register")){
-		AccountManager.getInstance().registerUser(firstName, lastName, email, username, password,address);
+		AccountManager.getInstance().registerUser(firstName, lastName, email, username.toLowerCase(), password,address,phoneNumber);
 		}
 		//response.sendRedirect(loggedHTML);
 //		RequestDispatcher rd = request.getRequestDispatcher(loggedHTML);

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.laptop.users.Account;
+import com.laptop.users.Administrator;
 import com.laptop.users.Customer;
 
 public class AccountDAO {
@@ -30,14 +31,15 @@ public class AccountDAO {
 		try {
 			DBManager.getInstance();
 			ps = DBManager.getConnection().prepareStatement(
-					"INSERT INTO accounts (first_name, last_name, email,username, password,address,is_admin) VALUES (?,?,?,?,?,?,?);");
+					"INSERT INTO accounts (first_name, last_name, email,username, password,address,phone_number,is_admin) VALUES (?,?,?,?,?,?,?,?);");
 			ps.setString(1, account.getFirstName());
 			ps.setString(2, account.getLastName());
 			ps.setString(3, account.getEmail());
 			ps.setString(4, account.getUsername());
 			ps.setString(5, account.getPassword());
 			ps.setString(6, account.getAddress());
-			ps.setBoolean(7, account.isAdmin());
+			ps.setString(7, account.getPhoneNumber());
+			ps.setBoolean(8, account.isAdmin());
 			ps.executeUpdate();
 
 			System.out.println("User added successfully");
@@ -67,17 +69,17 @@ public class AccountDAO {
 			st = DBManager.getConnection().createStatement();
 
 			resultSet = st.executeQuery(
-					"SELECT first_name, last_name, email,username, password,address ,is_admin FROM accounts;");
+					"SELECT first_name, last_name, email,username, password,address ,phone_number,is_admin FROM accounts;");
 			while (resultSet.next()) {
 				if (resultSet.getBoolean("is_admin")) {
-					users.add(new Customer(resultSet.getString("first_name"), resultSet.getString("last_name"),
+					users.add(new Administrator(resultSet.getString("first_name"), resultSet.getString("last_name"),
 							resultSet.getString("email"), resultSet.getString("username"),
 							resultSet.getString("password"), resultSet.getString("address")));
 
 				}
 				users.add(new Customer(resultSet.getString("first_name"), resultSet.getString("last_name"),
 						resultSet.getString("email"), resultSet.getString("username"), resultSet.getString("password"),
-						resultSet.getString("address")));
+						resultSet.getString("address"),resultSet.getString("phone_number")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Cannot create statement");

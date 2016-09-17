@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String loggedHTML;
-		if (!AccountManager.getInstance().loginValidation(username, password)) {
+		if (!AccountManager.getInstance().loginValidation(username.toLowerCase(), password)) {
 			response.getWriter().append("ERROR");
 
 		} 
