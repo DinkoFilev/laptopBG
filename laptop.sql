@@ -22,20 +22,22 @@ CREATE TABLE `notebooks` (
   `operation_system` varchar(50) DEFAULT NULL,
   `weight` varchar(50) DEFAULT NULL,
   `size` varchar(50) DEFAULT NULL,
-   `quantity` int(11) UNSIGNED DEFAULT NULL,
-    `image` varchar(200) DEFAULT NULL, 
+  `quantity` int(11) UNSIGNED DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY `notebook_id` (`notebook_id`),
-  CONSTRAINT `product_notebook_id` FOREIGN KEY (`notebook_id`) REFERENCES products(`product_id`)
-);
+  CONSTRAINT `product_notebook_id` FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+  );
 
 CREATE TABLE `accounts` (
   `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
   `last_Name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `user_name` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `address` varchar(100) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`account_id`)
 );
