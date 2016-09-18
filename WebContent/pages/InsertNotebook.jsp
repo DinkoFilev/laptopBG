@@ -10,7 +10,7 @@
 <body>
 
 <div>
-	<form name="login_frm" id="login_frm" action="/LaptopBG/InsertNotebook" method="post">
+	<form name="login_frm" id="login_frm" action="/LaptopBG/InsertNotebook" method="get">
     <div id="login_box">
       <div id="login_header">
            Insert Notebook

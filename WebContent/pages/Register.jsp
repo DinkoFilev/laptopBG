@@ -69,6 +69,26 @@
 							
 	
 						}
+						else if(msg == 'username2') // Message Sent, check and redirect
+						{				// and direct to the success page
+							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+				                	{
+					                  //add message and change the class of the box and start fading
+					                  $(this).html('Username is already used').removeClass().addClass('myerror').fadeTo(900,1);
+					                });
+							
+	
+						}
+						else if(msg == 'email2') // Message Sent, check and redirect
+						{				// and direct to the success page
+							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
+				                	{
+					                  //add message and change the class of the box and start fading
+					                  $(this).html('E-mail is already used').removeClass().addClass('myerror').fadeTo(900,1);
+					                });
+							
+	
+						}
 						else
 						{
 							$("#msgbox").html('Register Verified, You can now login.....').addClass('myinfo').fadeTo(900,1,

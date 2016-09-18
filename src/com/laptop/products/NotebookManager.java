@@ -7,7 +7,7 @@ import com.laptop.DB_ACCESS.NotebookDAO;
 import com.laptop.users.Account;
 
 public class NotebookManager {
-	static NotebookManager instance = null;
+	public static NotebookManager instance = null;
 	private ConcurrentHashMap<String, Notebook> allNotebooks;
 
 	private NotebookManager() {
@@ -25,15 +25,15 @@ public class NotebookManager {
 		return instance;
 	}
 
-	public void addNotebook(String type, String name, String model, double price, String processor, String video,
+	public void addNotebook(String name, String model, double price, String processor, String video,
 			int memory, double storageCapacity, String displayInfo, String opticalDrive, String connections,
 			String interfaces, String operation_system, String weight, String size, int quantity, String image) {
 
-		Notebook notebook = new Notebook(type, name, model, price, processor, video, memory, storageCapacity,
+		Notebook notebook = new Notebook(name, model, price, processor, video, memory, storageCapacity,
 				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
 		allNotebooks.put(model, notebook);
 		// any issue with database will remove last user from cache
-		NotebookDAO.getInstance().insertNotebook(notebook);
+		
 		if (!NotebookDAO.getInstance().insertNotebook(notebook)) {
 			allNotebooks.remove(model);
 

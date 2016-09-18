@@ -20,10 +20,10 @@ public class Notebook extends Product {
 	private int quantity;
 	private String image;
 
-	public Notebook(String type, String name, String model, double price, String processor, String video, int memory,
+	public Notebook(String name, String model, double price, String processor, String video, int memory,
 			double storageCapacity, String displayInfo, String opticalDrive, String connections, String interfaces,
 			String operation_system, String weight, String size, int quantity, String image) {
-		super(type);
+		super(1);
 		this.name = name;
 		this.model = model;
 		this.price = price;

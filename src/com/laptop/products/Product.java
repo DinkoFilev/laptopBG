@@ -2,13 +2,12 @@ package com.laptop.products;
 
 public abstract class Product {
 
-	private String type;
+	private int type;
 
-	public Product(String type) {
+	Product(int type){
 		this.type = type;
 	}
-
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 

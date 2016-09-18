@@ -43,8 +43,8 @@
       <!-- Content Slider -->
       <div id="login-box" class="box">
         <div id="login-holder">
-        <jsp:include page="Login.jsp" flush="true" />
-          
+       <%@include file="Login.jsp" %>
+	
         </div>
       
       </div>

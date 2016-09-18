@@ -106,12 +106,12 @@ public class AccountManager {
 			return "password";
 		}
 		if (registerredUsers.containsKey(username)) {
-			return "username";
+			return "username2";
 		}
 
 		for (Entry<String, Account> user : registerredUsers.entrySet()) {
 			if (user.getValue().getEmail().equals(email)) {
-				return "email";
+				return "email2";
 			}
 
 		}

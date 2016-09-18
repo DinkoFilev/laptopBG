@@ -34,32 +34,28 @@ public class NotebookDAO {
 			e.printStackTrace();
 		}
 
-		try {
-			resultSet = st.executeQuery("SELECT product_id FROM products where product_type=" + notebook.getType());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 		try {
 			pst = DBManager.getConnection().prepareStatement(
-					"INSERT INTO notebooks (name, model, price, processor, video, memory,storageCapacity, displayInfo, opticalDrive,  connections, interfaces,operation_system, weight,  size,  quantity,  image,product_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+					"INSERT INTO notebooks (name, model, price, processor, video, memory,storage_capacity, display_info, optical_drive,  connections, interfaces,operation_system, weight,  size,  quantity,  image,product_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 			pst.setString(1, notebook.getName());
 			pst.setString(2, notebook.getModel());
 			pst.setDouble(3, notebook.getPrice());
-			pst.setString(4, notebook.getVideo());
-			pst.setInt(5, notebook.getMemory());
-			pst.setDouble(6, notebook.getStorageCapacity());
-			pst.setString(7, notebook.getDisplayInfo());
-			pst.setString(8, notebook.getOpticalDrive());
-			pst.setString(9, notebook.getConnections());
-			pst.setString(10, notebook.getInterfaces());
-			pst.setString(11, notebook.getOperation_system());
-			pst.setString(12, notebook.getWeight());
-			pst.setString(13, notebook.getSize());
-			pst.setDouble(14, notebook.getQuantity());
-			pst.setString(15, notebook.getImage());
-			pst.setInt(16, resultSet.getInt("product_id"));
+			pst.setString(4, notebook.getProcessor());
+			pst.setString(5, notebook.getVideo());
+			pst.setInt(6, notebook.getMemory());
+			pst.setDouble(7, notebook.getStorageCapacity());
+			pst.setString(8, notebook.getDisplayInfo());
+			pst.setString(9, notebook.getOpticalDrive());
+			pst.setString(10, notebook.getConnections());
+			pst.setString(11, notebook.getInterfaces());
+			pst.setString(12, notebook.getOperation_system());
+			pst.setString(13, notebook.getWeight());
+			pst.setString(14, notebook.getSize());
+			pst.setDouble(15, notebook.getQuantity());
+			pst.setString(16, notebook.getImage());
+			pst.setInt(17, notebook.getType());
 			pst.executeUpdate();
 			System.out.println("Noteboook added successfully");
 			return true;
@@ -90,17 +86,16 @@ public class NotebookDAO {
 	}
 
 	public Set<Notebook> getAllNotebook() {
-		Set<Notebook> notebooks = new HashSet<Notebook>();
+		HashSet<Notebook> notebooks = new HashSet<Notebook>();
 		try{
 			DBManager.getInstance();
 			Statement st = DBManager.getConnection().createStatement();
 			ResultSet resultSet = st
-					.executeQuery("SELECT name, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image,product_id FROM accounts;");
-			ResultSet rs  = st.executeQuery("SELECT type from products where product_id="+resultSet.getInt("product_id"));
-			String type=rs.getString("type");
+					.executeQuery("SELECT name, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image FROM accounts;");
+			
 			while (resultSet.next()) {
 					notebooks.add(new Notebook(
-							type,
+							
 							resultSet.getString("name"),
 							resultSet.getString("model"),
 							resultSet.getDouble("price"),
@@ -122,7 +117,7 @@ public class NotebookDAO {
 		} catch (SQLException e) {
 			System.out.println("Cannot create statement");
 			
-		return null;
+		return notebooks;
 			}
 		return notebooks;
 		}
