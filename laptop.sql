@@ -8,7 +8,7 @@ CREATE TABLE `products` (
 
 CREATE TABLE `notebooks` (
 `notebook_id` int(11)  UNSIGNED NOT NULL  AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `brand` varchar(100) DEFAULT NULL,
   `model` varchar(45) DEFAULT NULL,
   `price` double NOT NULL,
   `processor` varchar(50) DEFAULT NULL,
@@ -53,3 +53,4 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_product_id` FOREIGN KEY (`product_id`) REFERENCES  products(`product_id`),
   CONSTRAINT `orders_user_id` FOREIGN KEY (`account_id`) REFERENCES  accounts(`account_id`)
 );
+Insert into products (product_id,product_type) values(1,'notebook')

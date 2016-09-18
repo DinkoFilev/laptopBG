@@ -10,7 +10,7 @@
 <body>
 
 <div>
-	<form name="login_frm" id="login_frm" action="/LaptopBG/InsertNotebook" method="get">
+	<form name="login_frm" id="login_frm" action="/LaptopBG/InsertNotebook" method="post" enctype="multipart/form-data" >
     <div id="login_box">
       <div id="login_header">
            Insert Notebook
@@ -51,6 +51,7 @@
         <div class="label">Browse image:</div>
         <div class="control"><input type="file" name="image" id="image"/><span style="font-size: 10px;"></span></div>
         <div style="clear:both;height:0px;"></div>
+        
        
       
       	<div id="msgbox"></div>

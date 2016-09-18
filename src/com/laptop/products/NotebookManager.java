@@ -3,9 +3,7 @@ package com.laptop.products;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.laptop.DB_ACCESS.AccountDAO;
 import com.laptop.DB_ACCESS.NotebookDAO;
-import com.laptop.users.Account;
 
 public class NotebookManager {
 	public static NotebookManager instance = null;
@@ -26,23 +24,23 @@ public class NotebookManager {
 		return instance;
 	}
 
-	public void addNotebook(String brand, String model, double price, String processor, String video,
-			int memory, double storageCapacity, String displayInfo, String opticalDrive, String connections,
-			String interfaces, String operation_system, String weight, String size, int quantity, String image) {
+	public void addNotebook(String brand, String model, double price, String processor, String video, int memory,
+			double storageCapacity, String displayInfo, String opticalDrive, String connections, String interfaces,
+			String operation_system, String weight, String size, int quantity, String image) {
 
-		Notebook notebook = new Notebook(brand, model, price, processor, video, memory, storageCapacity,
-				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
+		Notebook notebook = new Notebook(brand, model, price, processor, video, memory, storageCapacity, displayInfo,
+				opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
 		allNotebooks.put(model, notebook);
 		// any issue with database will remove last user from cache
-		
+
 		if (!NotebookDAO.getInstance().insertNotebook(notebook)) {
 			allNotebooks.remove(model);
 
 		}
-		for (Entry<String, Notebook> str: allNotebooks.entrySet()) {
-			
+		for (Entry<String, Notebook> str : allNotebooks.entrySet()) {
+
 			System.out.println(str.getValue().getBrand());
-			
+
 		}
 	}
 

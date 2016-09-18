@@ -1,24 +1,28 @@
 package com.laptop.servlet.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.laptop.products.NotebookManager;
 
-/**
- * Servlet implementation class InsertNotebook
- */
 @WebServlet("/InsertNotebook")
+@MultipartConfig
 public class InsertNotebook extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String name = request.getParameter("brand");
 		String model = request.getParameter("model");
 		double price = Double.parseDouble(request.getParameter("price"));
@@ -34,13 +38,23 @@ public class InsertNotebook extends HttpServlet {
 		String weight = request.getParameter("weight");
 		String size = request.getParameter("size");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		String image = request.getParameter("image");
-		
-		NotebookManager.getInstance().addNotebook(name, model, price, processor, video, memory, storageCapacity, displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
-		
-		
-	}
+		Part notebookImg = request.getPart("image");
 
-	
+		InputStream notebookImgStream = notebookImg.getInputStream();
+
+		File dir = new File("notebookImg");
+		if (!dir.exists()) {
+			dir.mkdir();
+		}
+		File notebookImgFile = new File(dir, model + notebookImg.getContentType().split("/")[1]);
+		Files.copy(notebookImgStream, notebookImgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		String image = notebookImgFile.getPath();
+		NotebookManager.getInstance().addNotebook(name, model, price, processor, video, memory, storageCapacity,
+				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
+
+		RequestDispatcher view = request.getRequestDispatcher("/pages/index.jsp");
+		view.forward(request, response);
+
+	}
 
 }
