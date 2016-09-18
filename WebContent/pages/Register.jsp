@@ -24,7 +24,7 @@
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('First Name should contains letters 3 to 20 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('First Name should contains letters 3 to 45 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	
@@ -34,7 +34,7 @@
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('Last Name should contains letters from 3 to 20 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('Last Name should contains letters from 3 to 45 symbols ').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	
@@ -54,7 +54,7 @@
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('Username can contains digits, letters, dash, dot, underscore from 3 to 10 symbols').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('Username can contains digits, letters, dash, dot, underscore from 3 to 45 symbols').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	
@@ -64,7 +64,7 @@
 							$("#msgbox").fadeTo(200,0.1,function() //start fading the messagebox
 				                	{
 					                  //add message and change the class of the box and start fading
-					                  $(this).html('Password can contains digits, letters, dash, dot, underscore from 3 to 15 symbols').removeClass().addClass('myerror').fadeTo(900,1);
+					                  $(this).html('Password can contains digits, letters, dash, dot, underscore from 3 to 30 symbols').removeClass().addClass('myerror').fadeTo(900,1);
 					                });
 							
 	

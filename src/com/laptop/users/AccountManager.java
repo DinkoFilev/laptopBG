@@ -84,11 +84,11 @@ public class AccountManager {
 	}
 
 	public String registerChecker(String firstName , String lastName , String email , String username , String password , String address , String phoneNumber) {
-		if(!firstName.matches("^[a-zA-Z]{3,20}$")){
+		if(!firstName.matches("^[a-zA-Z]{3,45}$")){
 			System.out.println("NE MATCHVA firstName");
 			return "firstName";
 		}
-		if(!lastName.matches("^[a-zA-Z]{3,20}$")){
+		if(!lastName.matches("^[a-zA-Z]{3,45}$")){
 			System.out.println("NE MATCHVA LastName");
 		
 			return "lastName";
@@ -97,11 +97,11 @@ public class AccountManager {
 			System.out.println("NE MATCHVA emaila");
 			return "email";
 		}
-		if(!username.matches("^[a-zA-Z0-9._-]{3,10}$")){
+		if(!username.matches("^[a-zA-Z0-9._-]{3,45}$")){
 			System.out.println("NE MATCHVA username");
 			return "username";
 		}
-		if(!password.matches("^[a-zA-Z0-9._-]{3,15}$")){
+		if(!password.matches("^[a-zA-Z0-9._-]{3,30}$")){
 			System.out.println("NE MATCHVA parolata");
 			return "password";
 		}
