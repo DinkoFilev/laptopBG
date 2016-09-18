@@ -19,7 +19,7 @@ public class InsertNotebook extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = request.getParameter("name");
+		String name = request.getParameter("brand");
 		String model = request.getParameter("model");
 		double price = Double.parseDouble(request.getParameter("price"));
 		String processor = request.getParameter("processor");

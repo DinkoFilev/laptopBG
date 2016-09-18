@@ -3,7 +3,7 @@ package com.laptop.products;
 public class Notebook extends Product {
 
 	// notebook characteristics
-	private String name;
+	private String brand;
 	private String model;
 	private double price;
 	private String processor;
@@ -20,11 +20,11 @@ public class Notebook extends Product {
 	private int quantity;
 	private String image;
 
-	public Notebook(String name, String model, double price, String processor, String video, int memory,
+	public Notebook(String brand, String model, double price, String processor, String video, int memory,
 			double storageCapacity, String displayInfo, String opticalDrive, String connections, String interfaces,
 			String operation_system, String weight, String size, int quantity, String image) {
 		super(1);
-		this.name = name;
+		this.brand = brand;
 		this.model = model;
 		this.price = price;
 		this.processor = processor;
@@ -42,8 +42,8 @@ public class Notebook extends Product {
 		this.image = image;
 	}
 
-	public String getName() {
-		return name;
+	public String getBrand() {
+		return brand;
 	}
 
 	public String getModel() {

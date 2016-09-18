@@ -14,7 +14,7 @@ CREATE TABLE `notebooks` (
   `processor` varchar(50) DEFAULT NULL,
   `video` varchar(50) DEFAULT NULL,
   `memory` int(11) UNSIGNED DEFAULT NULL,
-  `storage_capacity` double DEFAULT NULL,
+  `storage_capacity` varchar(50) DEFAULT NULL,
   `display_info` varchar(50) DEFAULT NULL,
   `optical_drive` varchar(50) DEFAULT NULL,
   `connections` varchar(50) DEFAULT NULL,

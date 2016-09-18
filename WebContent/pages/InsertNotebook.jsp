@@ -18,8 +18,8 @@
       <div id="form_val">
   
 			
-        <div class="label">Display Name:</div>
-        <div class="control"><input type="text" name="name" id="name"/><span style="font-size: 10px;"></span></div>
+        <div class="label">Brand :</div>
+        <div class="control"><input type="text" name="brand" id="brand"/><span style="font-size: 10px;"></span></div>
         <div class="label">Model :</div>
         <div class="control"><input type="text" name="model" id="model"/><span style="font-size: 10px;"></span></div>
         <div class="label">Price :</div>

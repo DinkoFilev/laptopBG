@@ -38,8 +38,8 @@ public class NotebookDAO {
 
 		try {
 			pst = DBManager.getConnection().prepareStatement(
-					"INSERT INTO notebooks (name, model, price, processor, video, memory,storage_capacity, display_info, optical_drive,  connections, interfaces,operation_system, weight,  size,  quantity,  image,product_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-			pst.setString(1, notebook.getName());
+					"INSERT INTO notebooks (brand, model, price, processor, video, memory,storage_capacity, display_info, optical_drive,  connections, interfaces,operation_system, weight,  size,  quantity,  image,product_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+			pst.setString(1, notebook.getBrand());
 			pst.setString(2, notebook.getModel());
 			pst.setDouble(3, notebook.getPrice());
 			pst.setString(4, notebook.getProcessor());
@@ -68,7 +68,7 @@ public class NotebookDAO {
 
 	}
 
-	public void setQuantity(String name, int quantity) {
+	public void setQuantity(String model, int quantity) {
 		// TODO Auto-generated method stub
 		DBManager.getInstance();
 		Statement st =null;
@@ -76,7 +76,7 @@ public class NotebookDAO {
 		ResultSet resultSet = null;
 		try {
 			st = DBManager.getConnection().createStatement();
-			resultSet = st.executeQuery("SELECT notebook_id FROM notebooks where name="+name+";");
+			resultSet = st.executeQuery("SELECT notebook_id FROM notebooks where model="+model+";");
 			int id=resultSet.getInt("notebook_id");
 			pst = DBManager.getConnection().prepareStatement("UPDATE notebooks SET quantity = quantity +"+quantity+" WHERE notebook_id="+id+";");
 		} catch (SQLException e) {
@@ -91,12 +91,12 @@ public class NotebookDAO {
 			DBManager.getInstance();
 			Statement st = DBManager.getConnection().createStatement();
 			ResultSet resultSet = st
-					.executeQuery("SELECT name, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image FROM accounts;");
+					.executeQuery("SELECT brand, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image FROM accounts;");
 			
 			while (resultSet.next()) {
 					notebooks.add(new Notebook(
 							
-							resultSet.getString("name"),
+							resultSet.getString("brand"),
 							resultSet.getString("model"),
 							resultSet.getDouble("price"),
 							resultSet.getString("proccesor"),
