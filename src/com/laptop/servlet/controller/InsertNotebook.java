@@ -45,28 +45,33 @@ public class InsertNotebook extends HttpServlet {
 		String weight = request.getParameter("weight");
 		String size = request.getParameter("size");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		Part notebookImg = request.getPart("image");
-
-		InputStream notebookImgStream = notebookImg.getInputStream();
-
-		File dir = new File("productImages");
 		
+		Part notebookImg = request.getPart("image");
+		InputStream notebookImgStream = notebookImg.getInputStream();
+		File dir = new File("productImages");
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
-		System.out.println(dir.getAbsolutePath());
-		File notebookImgFile = new File(dir, model+"." + notebookImg.getContentType().split("/")[1]);
-		Files.copy(notebookImgStream, notebookImgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		String image = notebookImgFile.toString();
-		image = image.replaceAll("\\\\", "/");
-		System.out.println(image);
-		
+		File notebookImgFile = new File(dir, model+"-pic." + notebookImg.getContentType().split("/")[1]);
+		Files.copy(notebookImgStream, notebookImgFile.toPath());
+		String image = notebookImgFile.getName();
 		NotebookManager.getInstance().addNotebook(name, model, price, processor, video, memory, storageCapacity,
 				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
-		
-		
-		response.sendRedirect("/LaptopBG/pages/Index.jsp");
-		
+		RequestDispatcher view= request.getRequestDispatcher("/pages/Index.jsp");
+		view.forward(request, response);
+	
+//				Part profilePic = request.getPart("profilePic");//handles data from <input type=file name=profilePic>
+//				InputStream profilePicStream = profilePic.getInputStream();
+//				
+//					File dir = new File("userProfilePics");
+//					if(!dir.exists()){
+//						dir.mkdir();
+//					}
+//					File profilePicFile = new File(dir, username+"-profile-pic."+ profilePic.getContentType().split("/")[1]);
+//					System.out.println("Try to save file with name: " + profilePicFile.getName());
+//					System.out.println("abs. path = " + profilePicFile.getAbsolutePath());
+//					Files.copy(profilePicStream, profilePicFile.toPath());
+
 
 	}
 
