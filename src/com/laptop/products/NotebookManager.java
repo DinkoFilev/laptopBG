@@ -1,5 +1,7 @@
 package com.laptop.products;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -51,5 +53,9 @@ public class NotebookManager {
 	public void setQuantity(String model, int quantity) {
 		allNotebooks.get(model).setQuantity(quantity);
 		NotebookDAO.getInstance().setQuantity(model, quantity);
+	}
+
+	public Map<String, Notebook> getAllUsers() {
+		return Collections.unmodifiableMap(allNotebooks);
 	}
 }

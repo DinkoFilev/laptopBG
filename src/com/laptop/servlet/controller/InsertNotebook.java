@@ -27,8 +27,7 @@ public class InsertNotebook extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 7956775619286439139L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		String name = request.getParameter("brand");
 		String model = request.getParameter("model");
@@ -46,33 +45,48 @@ public class InsertNotebook extends HttpServlet {
 		String size = request.getParameter("size");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		Part notebookImg = request.getPart("image");
-		InputStream notebookImgStream = notebookImg.getInputStream();
+		Part notebookImg = null;
+		try {
+			notebookImg = request.getPart("image");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InputStream notebookImgStream = null;
+		try {
+			notebookImgStream = notebookImg.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		File dir = new File("productImages");
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
 		File notebookImgFile = new File(dir, model+"-pic." + notebookImg.getContentType().split("/")[1]);
-		Files.copy(notebookImgStream, notebookImgFile.toPath());
+		try {
+			Files.copy(notebookImgStream, notebookImgFile.toPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String image = notebookImgFile.getName();
 		NotebookManager.getInstance().addNotebook(name, model, price, processor, video, memory, storageCapacity,
 				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
 		RequestDispatcher view= request.getRequestDispatcher("/pages/Index.jsp");
-		view.forward(request, response);
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
-//				Part profilePic = request.getPart("profilePic");//handles data from <input type=file name=profilePic>
-//				InputStream profilePicStream = profilePic.getInputStream();
-//				
-//					File dir = new File("userProfilePics");
-//					if(!dir.exists()){
-//						dir.mkdir();
-//					}
-//					File profilePicFile = new File(dir, username+"-profile-pic."+ profilePic.getContentType().split("/")[1]);
-//					System.out.println("Try to save file with name: " + profilePicFile.getName());
-//					System.out.println("abs. path = " + profilePicFile.getAbsolutePath());
-//					Files.copy(profilePicStream, profilePicFile.toPath());
-
 
 	}
-
 }

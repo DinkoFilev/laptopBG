@@ -1,12 +1,18 @@
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
 <!-- ..//JQuery Source\\.. -->
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="${pageContext.request.contextPath}/pages/css/style.css" rel="stylesheet" type="text/css"  media="all" />
+<link href="${pageContext.request.contextPath}/pages/css/loginStyle.css" rel="stylesheet" type="text/css"  media="all" />
+<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+<script src="${pageContext.request.contextPath}/pages/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/pages/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/pages/js/jquery-func.js" type="text/javascript"></script>
 <!-- ..//JavaScript Code for this page\\.. -->
  <script type="text/javascript">
 	$(document).ready(function(){

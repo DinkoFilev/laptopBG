@@ -5,13 +5,14 @@
 <head>
 <title>Notebook World</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
 
+<link href="${pageContext.request.contextPath}/pages/css/style.css" rel="stylesheet" type="text/css"  media="all" />
+
+<link href="${pageContext.request.contextPath}/pages/css/loginStyle.css" rel="stylesheet" type="text/css"  media="all" />
 <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
-<script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
-<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
-<script src="js/jquery-func.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/pages/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/pages/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/pages/js/jquery-func.js" type="text/javascript"></script>
  <script>
     function changeContent(element,page) {
     	changeclass(element)
@@ -41,11 +42,11 @@
     <!-- Navigation -->
     <div id="navigation">
       <ul>
-        <li><a href="#?Index" class="active" id="1" onclick="changeContent(this,'IndexContent.jsp');">Home</a></li>
-        <li><a href="#" id="2" onclick="changeContent(this,'Support.jsp');">Support</a></li>
-        <li><a href="#?Accounts" id="3" onclick="changeContent(this,'Login.jsp');">My Account</a></li>
-        <li><a href="#" id="4" onclick="changeContent(this,'Login.jsp');">The Store</a></li>
-        <li><a href="#" id="5" onclick="changeContent(this,'Contact.jsp');">Contact</a></li>
+        <li><a href="#?Index" class="active" id="1" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/IndexContent.jsp');">Home</a></li>
+        <li><a href="#" id="2" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Support.jsp');">Support</a></li>
+        <li><a href="#?Accounts" id="3" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Login.jsp');">My Account</a></li>
+        <li><a href="#" id="4" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Login.jsp');">The Store</a></li>
+        <li><a href="#" id="5" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Contact.jsp');">Contact</a></li>
       </ul>
     </div>
     <!-- End Navigation -->
@@ -122,7 +123,7 @@
     <div class="more-products">
       <div class="more-products-holder">
         <ul>
-          <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
+          <li><a href="#"><img src="${pageContext.request.contextPath}/pages/css/images/small1.jpg" alt="" /></a></li>
           <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
           <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
           <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
@@ -187,7 +188,7 @@
 <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
 <script>
 $(document).ready(function(){
-	changeContent('1','IndexContent.jsp') 
+	changeContent('1','${pageContext.request.contextPath}/pages/IndexContent.jsp') 
     	
 });</script>
 </html>

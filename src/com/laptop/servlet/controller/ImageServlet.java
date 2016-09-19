@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ import com.laptop.products.NotebookManager;
 @WebServlet("/ImageServlet")
 public class ImageServlet extends HttpServlet {
 
-	public static void returnNotebookImg(Notebook n, HttpServletResponse response) throws IOException {
+	public static void returnNotebookImg(Notebook n, HttpServletResponse response,HttpServletRequest request) throws IOException {
 
 		File notebookImgFile = new File("productImages/" + n.getImage());
 		response.setContentLength((int) notebookImgFile.length());
@@ -28,7 +29,8 @@ public class ImageServlet extends HttpServlet {
 		response.setContentType(contentType);
 		OutputStream out = response.getOutputStream();
 	
-		System.out.println(Files.copy(notebookImgFile.toPath(), out));
+		Files.copy(notebookImgFile.toPath(), out);
+		
 
 	}
 
@@ -37,8 +39,8 @@ public class ImageServlet extends HttpServlet {
 		String s = request.getParameter("model");
 		System.out.println(s);
 		Notebook notebook = NotebookManager.getInstance().viewNotebook(s);
-		System.out.println(notebook.getModel()+ notebook.getImage() +"zzzzzzzzzzzzz");
-		returnNotebookImg(notebook, response);
+		System.out.println(notebook.getModel()+ notebook.getImage());
+		returnNotebookImg(notebook, response, request);
 
 	}
 
