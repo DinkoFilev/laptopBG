@@ -3,8 +3,10 @@ package com.laptop.servlet.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Matcher;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +22,11 @@ import com.laptop.products.NotebookManager;
 @WebServlet("/InsertNotebook")
 @MultipartConfig
 public class InsertNotebook extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7956775619286439139L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -42,18 +49,24 @@ public class InsertNotebook extends HttpServlet {
 
 		InputStream notebookImgStream = notebookImg.getInputStream();
 
-		File dir = new File("notebookImg");
+		File dir = new File("productImages");
+		
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
-		File notebookImgFile = new File(dir, model + notebookImg.getContentType().split("/")[1]);
+		System.out.println(dir.getAbsolutePath());
+		File notebookImgFile = new File(dir, model+"." + notebookImg.getContentType().split("/")[1]);
 		Files.copy(notebookImgStream, notebookImgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		String image = notebookImgFile.getPath();
+		String image = notebookImgFile.toString();
+		image = image.replaceAll("\\\\", "/");
+		System.out.println(image);
+		
 		NotebookManager.getInstance().addNotebook(name, model, price, processor, video, memory, storageCapacity,
 				displayInfo, opticalDrive, connections, interfaces, operation_system, weight, size, quantity, image);
-
-		RequestDispatcher view = request.getRequestDispatcher("/pages/index.jsp");
-		view.forward(request, response);
+		
+		
+		response.sendRedirect("/LaptopBG/pages/Index.jsp");
+		
 
 	}
 

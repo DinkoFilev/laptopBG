@@ -91,7 +91,7 @@ public class NotebookDAO {
 			DBManager.getInstance();
 			Statement st = DBManager.getConnection().createStatement();
 			ResultSet resultSet = st
-					.executeQuery("SELECT brand, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image FROM accounts;");
+					.executeQuery("SELECT brand, model, price,processor, video,memory,storage_capacity ,display_info,optical_drive,connections,interfaces,operation_system,weight,size,quantity,image FROM notebooks;");
 			
 			while (resultSet.next()) {
 					notebooks.add(new Notebook(
@@ -99,12 +99,12 @@ public class NotebookDAO {
 							resultSet.getString("brand"),
 							resultSet.getString("model"),
 							resultSet.getDouble("price"),
-							resultSet.getString("proccesor"),
+							resultSet.getString("processor"),
 							resultSet.getString("video"),
 							resultSet.getInt   ("memory"),
 							resultSet.getDouble("storage_capacity"),
 							resultSet.getString("display_info"), 
-							resultSet.getString("opticalDrive"), 
+							resultSet.getString("optical_drive"), 
 							resultSet.getString("connections"), 
 							resultSet.getString("interfaces"), 
 							resultSet.getString("operation_system"), 
@@ -116,6 +116,7 @@ public class NotebookDAO {
 				}
 		} catch (SQLException e) {
 			System.out.println("Cannot create statement");
+			e.printStackTrace();
 			
 		return notebooks;
 			}
