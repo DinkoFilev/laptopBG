@@ -3,13 +3,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Shop Around</title>
+<title>Notebook World</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
 <!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
 <script src="js/jquery-func.js" type="text/javascript"></script>
+ <script>
+    function changeContent(element,page) {
+    	changeclass(element)
+        $('#content').load(page);
+    }</script>
+    <script>
+    function changeclass(element) {
+    	var i;
+    	for (i = 1; i <= 5; ++i) {
+    		document.getElementById(i).setAttribute("class","unactive");
+    	}
+
+        $(element).toggleClass('active');
+    }</script>
 </head>
 <body>
 <!-- Shell -->
@@ -25,11 +41,11 @@
     <!-- Navigation -->
     <div id="navigation">
       <ul>
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Support</a></li>
-        <li><a href="AccountLogin.jsp">My Account</a></li>
-        <li><a href="#">The Store</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#?Index" class="active" id="1" onclick="changeContent(this,'IndexContent.jsp');">Home</a></li>
+        <li><a href="#" id="2" onclick="changeContent(this,'Support.jsp');">Support</a></li>
+        <li><a href="#?Accounts" id="3" onclick="changeContent(this,'Login.jsp');">My Account</a></li>
+        <li><a href="#" id="4" onclick="changeContent(this,'Login.jsp');">The Store</a></li>
+        <li><a href="#" id="5" onclick="changeContent(this,'Contact.jsp');">Contact</a></li>
       </ul>
     </div>
     <!-- End Navigation -->
@@ -40,57 +56,7 @@
     <div class="cl">&nbsp;</div>
     <!-- Content -->
     <div id="content">
-      <!-- Content Slider -->
-      <div id="slider" class="box">
-        <div id="slider-holder">
-          <ul>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-          </ul>
-        </div>
-        <div id="slider-nav"> <a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> </div>
-      </div>
-      <!-- End Content Slider -->
-      <!-- Products -->
-      <div class="products">
-        <div class="cl">&nbsp;</div>
-        <ul>
-          <li> <a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-            <div class="product-info">
-              <h3>LOREM IPSUM</h3>
-              <div class="product-desc">
-                <h4>WOMEN’S</h4>
-                <p>Lorem ipsum dolor sit<br />
-                  amet</p>
-                <strong class="price">$58.99</strong> </div>
-            </div>
-          </li>
-          <li> <a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-            <div class="product-info">
-              <h3>LOREM IPSUM</h3>
-              <div class="product-desc">
-                <h4>WOMEN’S</h4>
-                <p>Lorem ipsum dolor sit<br />
-                  amet</p>
-                <strong class="price">$58.99</strong> </div>
-            </div>
-          </li>
-          <li class="last"> <a href="#"><img src="css/images/big1.jpg" alt="" /></a>
-            <div class="product-info">
-              <h3>LOREM IPSUM</h3>
-              <div class="product-desc">
-                <h4>WOMEN’S</h4>
-                <p>Lorem ipsum dolor sit<br />
-                  amet</p>
-                <strong class="price">$58.99</strong> </div>
-            </div>
-          </li>
-        </ul>
-        <div class="cl">&nbsp;</div>
-      </div>
-      <!-- End Products -->
+    
     </div>
     <!-- End Content -->
     <!-- Sidebar -->
@@ -219,4 +185,9 @@
 </div>
 <!-- End Shell -->
 <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+<script>
+$(document).ready(function(){
+	changeContent('1','IndexContent.jsp') 
+    	
+});</script>
 </html>
