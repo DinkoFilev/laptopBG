@@ -172,11 +172,11 @@ if(session.getAttribute("user")==null)
   <div id="footer">
     <p class="left">  <a href="#?Index" class="active" id="1" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/IndexContent.jsp');">Home</a> <span>|</span> 
     <a href="#">Support</a> <span>|</span> <a href="#?Accounts" id="3" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Account.jsp');">My Account</a> <span>|</span> <a href="#">The Store</a> <span>|</span> <a href="#">Contact</a> </p>
-    <p class="right"> &copy; 2010 Shop Around. Design by <a href="http://chocotemplates.com">Chocotemplates.com</a> </p>
+    <p class="right"> &copy; 2016 Shop Around. Design by D &amp I</p>
   </div>
   <!-- End Footer -->
 </div>
 <!-- End Shell -->
-<div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+
 </body>
 </html>

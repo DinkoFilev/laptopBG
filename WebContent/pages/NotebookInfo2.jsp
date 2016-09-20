@@ -79,8 +79,8 @@
 
 					</table>
 					
-					<form class="orders" action="/LaptopBG/OrderServlet" method="post">
-					<input  type="submit" name="login" id="login" value="BUY"></input>
+					<form class="orders" action="/LaptopBG/CartServlet" method="post">
+					<input  type="submit" name="login" id="login" value="ADD TO CART"></input>
 					
 					</form>
 					
