@@ -34,7 +34,7 @@ public class NoteBookParam extends HttpServlet {
 		System.out.println(s);
 	
 		request.setAttribute("model", s);
-		RequestDispatcher view = request.getRequestDispatcher("/pages/NotebookInfo.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/pages/NotebookInfo2.jsp");
 		view.forward(request,response);
 		
 		

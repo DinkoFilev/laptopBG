@@ -25,7 +25,20 @@
         <div id="slider-holder">
           <ul>
             <%for(Notebook n : NotebookManager.getInstance().getAllUsers().values()){  %>
-            <li><a href="../NoteBookParam?model=<%=n.getModel()%>"><img src="${pageContext.request.contextPath}/pages/productImages/<%=n.getImage() %>" alt="" /></a></li>
+            <li>				<div class="product-info2">
+								<h3>Brand : <%=n.getBrand() %></h3>
+								<div class="product-desc2">
+									<h4>Model : <%=n.getModel() %></h4>
+									<h4>Processor : <%=n.getProcessor()%></h4>
+									<h4>Storage Capacity : <%=n.getStorageCapacity()%></h4>
+									<h4>Memory : <%=n.getMemory()%></h4>
+									<h4>Operation System : <%=n.getOperation_system()%></h4>
+									<br>
+									<strong class="price">Price : <%=n.getPrice() %>$</strong>
+								</div>
+								</div>
+            <a href="../NoteBookParam?model=<%=n.getModel()%>"><img src="${pageContext.request.contextPath}/pages/productImages/<%=n.getImage() %>"  alt="" height="231px" width="300px" align="right"/> </a></li>
+           
             <%} %>
           </ul>
         </div>
@@ -37,15 +50,17 @@
         <div class="cl">&nbsp;</div>
         <ul>
          <%for(Notebook n : NotebookManager.getInstance().getAllUsers().values()){  %>
-						<li class="last"><a href="../NoteBookParam?model=<%=n.getModel()%>"><img src="${pageContext.request.contextPath}/pages/productImages/<%=n.getImage()%>" alt=""height="231" width="383" /></a>
+						<li class="last"><a href="../NoteBookParam?model=<%=n.getModel()%>"><img src="${pageContext.request.contextPath}/pages/productImages/<%=n.getImage()%>" alt=""height="200" width="250" /></a>
 							<div class="product-info">
-								<h3><%=n.getBrand() %></h3>
+								<h3>Brand : <%=n.getBrand() %></h3>
 								<div class="product-desc">
-									<h4><%=n.getModel() %></h4>
-									<p>
-										<%=n.getProcessor()%><br /> 
-									</p>
-									<strong class="price"><%=n.getPrice() %></strong>
+									<h4>Model : <%=n.getModel() %></h4>
+									<h4>Processor : <%=n.getProcessor()%></h4>
+									<h4>Storage Capacity : <%=n.getStorageCapacity()%></h4>
+									<h4>Memory : <%=n.getMemory()%></h4>
+									<h4>Operation System : <%=n.getOperation_system()%></h4>
+									<br>
+									<strong class="price">Price : <%=n.getPrice() %>$</strong>
 								</div>
 								
 							</div></li>

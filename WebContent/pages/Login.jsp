@@ -13,6 +13,8 @@
 <script src="${pageContext.request.contextPath}/pages/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/pages/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/pages/js/jquery-func.js" type="text/javascript"></script>
+<link href="css/loginStyle.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
 <!-- ..//JavaScript Code for this page\\.. -->
  <script type="text/javascript">
 	$(document).ready(function(){
@@ -61,9 +63,8 @@
 
  </script>  
 
-<link href="css/loginStyle.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
 <title>Login Form</title>
 </head>
 <body>

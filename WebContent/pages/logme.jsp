@@ -3,5 +3,5 @@
 		String user=request.getParameter("user");
 		session.setMaxInactiveInterval(24 * 60 * 60);
 		session.setAttribute("user",user);
-		response.sendRedirect("/LaptopBG/pages/logged.jsp");
+		response.sendRedirect("/LaptopBG/pages/Index.jsp");
 %>

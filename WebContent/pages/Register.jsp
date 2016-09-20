@@ -95,7 +95,7 @@
 					                  function()
 					                  {
 					                     //redirect to secure page
-					                     document.location='AccountLogin.jsp';
+					                     document.location='Index.jsp';
 					                  });
 						}
 					}

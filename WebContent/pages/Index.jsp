@@ -1,5 +1,18 @@
+<%@page session="true"%>
+<%
+if(session.getAttribute("user")==null)
+{
+   response.sendRedirect("Login.jsp");
+}
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="com.laptop.products.Notebook"%>
+<%@page import="com.laptop.products.NotebookManager"%>
+<%String attr = String.valueOf(request.getParameter("models")); %>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,6 +26,8 @@
 <script src="${pageContext.request.contextPath}/pages/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/pages/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/pages/js/jquery-func.js" type="text/javascript"></script>
+
+
  <script>
     function changeContent(element,page) {
     	changeclass(element)
@@ -24,9 +39,21 @@
     	for (i = 1; i <= 5; ++i) {
     		document.getElementById(i).setAttribute("class","unactive");
     	}
-
+		
         $(element).toggleClass('active');
+		
     }</script>
+    
+	<script>
+	$(document).ready(function(){
+
+		changeContent('1','${pageContext.request.contextPath}/pages/IndexContent.jsp')
+
+	});</script>
+	
+	
+   
+    
 </head>
 <body>
 <!-- Shell -->
@@ -35,7 +62,7 @@
   <div id="header">
     <h1 id="logo"><a href="#">Notebook World</a></h1>
     <!-- Cart -->
-    <div id="cart"> <a href="#" class="cart-link">Your Shopping Cart</a>
+    <div id="cart"> <a href="#?Cart" class="cart-link" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Cart.jsp');">Your Shopping Cart</a>
       <div class="cl">&nbsp;</div>
       <span>Articles: <strong>4</strong></span> &nbsp;&nbsp; <span>Cost: <strong>$250.99</strong></span> </div>
     <!-- End Cart -->
@@ -44,7 +71,7 @@
       <ul>
         <li><a href="#?Index" class="active" id="1" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/IndexContent.jsp');">Home</a></li>
         <li><a href="#" id="2" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Support.jsp');">Support</a></li>
-        <li><a href="#?Accounts" id="3" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Login.jsp');">My Account</a></li>
+        <li><a href="#?Accounts" id="3" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Account.jsp');">My Account</a></li>
         <li><a href="#" id="4" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Login.jsp');">The Store</a></li>
         <li><a href="#" id="5" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Contact.jsp');">Contact</a></li>
       </ul>
@@ -56,7 +83,7 @@
   <div id="main">
     <div class="cl">&nbsp;</div>
     <!-- Content -->
-    <div id="content">
+    <div id="content" >
     
     </div>
     <!-- End Content -->
@@ -69,9 +96,18 @@
           <form action="#" method="post">
             <label>Keyword</label>
             <input type="text" class="field" />
-            <label>Category</label>
+            <label>Brand by Price :</label>
             <select class="field">
-              <option value="">-- Select Category --</option>
+              <option id="aleinware" value="">-- Alienware --</option>
+              <option id="asus" value="">-- Asus --</option>
+              <option id="acer" value="">-- Acer --</option>
+              <option id="hp" value="">-- HP --</option>
+              <option id="lenovo" value="">-- Lenovo --</option>
+              <option id="dell" value="">-- Dell --</option>
+              <option id="toshiba" value="">-- Toshiba --</option>
+              <option id="apple" value="">-- Apple --</option>
+              <option id="fujitsu" value="">-- Fujitsu --</option>
+              <option id="allbrands" value="">-- All Brands --</option>
             </select>
             <div class="inline-field">
               <label>Price</label>
@@ -92,22 +128,18 @@
       <!-- End Search -->
       <!-- Categories -->
       <div class="box categories">
-        <h2>Categories <span></span></h2>
+        <h2>Brands : <span></span></h2>
         <div class="box-content">
           <ul>
-            <li><a href="#">Category 1</a></li>
-            <li><a href="#">Category 2</a></li>
-            <li><a href="#">Category 3</a></li>
-            <li><a href="#">Category 4</a></li>
-            <li><a href="#">Category 5</a></li>
-            <li><a href="#">Category 6</a></li>
-            <li><a href="#">Category 7</a></li>
-            <li><a href="#">Category 8</a></li>
-            <li><a href="#">Category 9</a></li>
-            <li><a href="#">Category 10</a></li>
-            <li><a href="#">Category 11</a></li>
-            <li><a href="#">Category 12</a></li>
-            <li class="last"><a href="#">Category 13</a></li>
+            <li><a href="#">Alienware</a></li>
+            <li><a href="#">Asus</a></li>
+            <li><a href="#">Acer</a></li>
+            <li><a href="#">HP</a></li>
+            <li><a href="#">Lenovo</a></li>
+            <li><a href="#">Dell</a></li>
+            <li><a href="#">Toshiba</a></li>
+            <li><a href="#">Apple</a></li>
+            <li class="last"><a href="#">Fujitsu</a></li>
           </ul>
         </div>
       </div>
@@ -123,72 +155,28 @@
     <div class="more-products">
       <div class="more-products-holder">
         <ul>
-          <li><a href="#"><img src="${pageContext.request.contextPath}/pages/css/images/small1.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-          <li class="last"><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
-        </ul>
+          <%for(Notebook n : NotebookManager.getInstance().getAllUsers().values()){  %>
+						<li class="last"><a href="../NoteBookParam?model=<%=n.getModel()%>"><img src="${pageContext.request.contextPath}/pages/productImages/<%=n.getImage()%>" alt=""height="100" width="100" /></a>
+							</li>
+								<%} %>
+			</ul>
       </div>
       <div class="more-nav"> <a href="#" class="prev">previous</a> <a href="#" class="next">next</a> </div>
     </div>
     <!-- End More Products -->
     <!-- Text Cols -->
-    <div class="cols">
-      <div class="cl">&nbsp;</div>
-      <div class="col">
-        <h3 class="ico ico1">Donec imperdiet</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet, metus ac cursus auctor, arcu felis ornare dui.</p>
-        <p class="more"><a href="#" class="bul">Lorem ipsum</a></p>
-      </div>
-      <div class="col">
-        <h3 class="ico ico2">Donec imperdiet</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet, metus ac cursus auctor, arcu felis ornare dui.</p>
-        <p class="more"><a href="#" class="bul">Lorem ipsum</a></p>
-      </div>
-      <div class="col">
-        <h3 class="ico ico3">Donec imperdiet</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet, metus ac cursus auctor, arcu felis ornare dui.</p>
-        <p class="more"><a href="#" class="bul">Lorem ipsum</a></p>
-      </div>
-      <div class="col col-last">
-        <h3 class="ico ico4">Donec imperdiet</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet, metus ac cursus auctor, arcu felis ornare dui.</p>
-        <p class="more"><a href="#" class="bul">Lorem ipsum</a></p>
-      </div>
-      <div class="cl">&nbsp;</div>
-    </div>
-    <!-- End Text Cols -->
+    
   </div>
   <!-- End Side Full -->
   <!-- Footer -->
   <div id="footer">
-    <p class="left"> <a href="#">Home</a> <span>|</span> <a href="#">Support</a> <span>|</span> <a href="#">My Account</a> <span>|</span> <a href="#">The Store</a> <span>|</span> <a href="#">Contact</a> </p>
+    <p class="left">  <a href="#?Index" class="active" id="1" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/IndexContent.jsp');">Home</a> <span>|</span> 
+    <a href="#">Support</a> <span>|</span> <a href="#?Accounts" id="3" onclick="changeContent(this,'${pageContext.request.contextPath}/pages/Account.jsp');">My Account</a> <span>|</span> <a href="#">The Store</a> <span>|</span> <a href="#">Contact</a> </p>
     <p class="right"> &copy; 2010 Shop Around. Design by <a href="http://chocotemplates.com">Chocotemplates.com</a> </p>
   </div>
   <!-- End Footer -->
 </div>
 <!-- End Shell -->
 <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
-<script>
-$(document).ready(function(){
-	changeContent('1','${pageContext.request.contextPath}/pages/IndexContent.jsp') 
-    	
-});</script>
+</body>
 </html>
